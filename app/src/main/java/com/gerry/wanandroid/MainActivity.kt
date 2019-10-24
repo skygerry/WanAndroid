@@ -3,34 +3,47 @@ package com.gerry.wanandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.gerry.wanandroid.http.rx.BaseObserver
-import com.gerry.wanandroid.http.BaseRetrofit
-import com.gerry.wanandroid.http.rx.ResponseTransformer
-import com.gerry.wanandroid.http.bean.TreeBean
+import com.gerry.wanandroid.base.activity.BaseActivity
+import com.gerry.wanandroid.first.mvp.FirstPresenter
+import com.gerry.wanandroid.first.mvp.IFirstView
+import com.gerry.wanandroid.http.bean.ArticleList
 
-class MainActivity : AppCompatActivity() {
-    val baseUrl = "https://wanandroid.com/";
-
+class MainActivity : BaseActivity<IFirstView, FirstPresenter>(), IFirstView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        BaseRetrofit.getInstance()?.init()
-        BaseRetrofit.getRequest()?.getWxArticleChapters()
-                ?.compose(ResponseTransformer.observeOnMainThread())
-                ?.subscribe(object : BaseObserver<List<TreeBean>>(this) {
-                    override fun onSuccess(data: List<TreeBean>) {
-                        if (data != null) {
-                            for (i in data) {
-                                Log.e("xyh", "onResponse: " + i.name)
-                            }
-                        }
-                    }
 
-                    override fun onFail(e: Throwable, errorMsg: String) {
-                        Log.e("xyh", "onFailure: $errorMsg")
-                    }
+        presenter?.getFirstArticleList(0)
+    }
 
-                })
+    override fun createView(): IFirstView {
+        return this
+    }
+
+    override fun createPresenter(): FirstPresenter {
+        return FirstPresenter()
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun onResponseError(msg: String?) {
+
+    }
+
+    override fun getFirstArticleListSuccess(articleList: ArticleList) {
+        if (articleList != null) {
+            for (i in articleList.datas) {
+                Log.e("xyh", "onResponse: " + i.title)
+            }
+        }
+        Log.e("----->", articleList.datas.size.toString())
+    }
+
+    override fun showLoadingDialog(msg: String) {
+    }
+
+    override fun dismissLoadingDialog() {
     }
 }

@@ -3,7 +3,6 @@ package com.gerry.wanandroid.http.rx
 import com.gerry.wanandroid.http.bean.ResultData
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import android.content.Context
 import org.json.JSONException
 import com.google.gson.JsonParseException
 import android.net.ParseException
@@ -15,13 +14,9 @@ import java.net.UnknownHostException
 
 
 abstract class BaseObserver<T> : Observer<ResultData<T>> {
-    private var mContext: Context? = null
     private var mDisposable: Disposable? = null
     private val SUCCESS_CODE = 0
 
-    constructor(context: Context) {
-        this.mContext = context
-    }
 
     override fun onSubscribe(d: Disposable) {
         mDisposable = d
@@ -40,8 +35,9 @@ abstract class BaseObserver<T> : Observer<ResultData<T>> {
 
     override fun onError(e: Throwable) {
         if (e is JsonParseException
-                || e is JSONException
-                || e is ParseException) {
+            || e is JSONException
+            || e is ParseException
+        ) {
             //解析错误
             e.message?.let { onFail(e, it) }
         } else if (e is ConnectException) {

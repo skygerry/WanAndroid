@@ -5,8 +5,6 @@ import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroid.http.bean.ResultData
 import com.gerry.wanandroid.http.rx.ResponseTransformer
 import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 
 class FirstDataModel {

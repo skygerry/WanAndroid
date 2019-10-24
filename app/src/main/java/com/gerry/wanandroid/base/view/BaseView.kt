@@ -1,4 +1,4 @@
-package com.gerry.wanandroid.base
+package com.gerry.wanandroid.base.view
 
 interface BaseView {
     //显示dialog
@@ -6,4 +6,6 @@ interface BaseView {
 
     //取消dialog
     fun dismissLoadingDialog()
+
+    fun onResponseError(msg: String?)
 }
