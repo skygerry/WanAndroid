@@ -7,7 +7,7 @@ data class ArticleList(
         @SerializedName("curPage")
         var curPage: Int = 0,
         @SerializedName("datas")
-        var datas: List<ArticleBean> = listOf(),
+        var datas: MutableList<ArticleBean> = mutableListOf(),
         @SerializedName("offset")
         var offset: Int = 0,
         @SerializedName("over")

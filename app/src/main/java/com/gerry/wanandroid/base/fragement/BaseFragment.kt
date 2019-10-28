@@ -14,6 +14,10 @@ abstract class BaseFragment<V : BaseView, P : BasePresenter<V>> : Fragment() {
     private var view: V? = null
     public lateinit var mContext: Context
 
+    fun getPresenter(): P? {
+        return presenter
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(getLayoutId(), container, false)
         mContext = activity!!

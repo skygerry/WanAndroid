@@ -52,19 +52,19 @@ interface WanAndroidService {
      * @param page 页码 从0开始
      */
     @GET("article/listproject/{page}/json")
-    fun getFirstArticleListByTime(@Path("page") page: Int): Call<ResultData<ArticleList>>
+    fun getFirstArticleListByTime(@Path("page") page: Int): Observable<ResultData<ArticleList>>
 
     /**
      * 首页banner
      */
     @GET("banner/json")
-    fun getFirstBanner(): Call<ResultData<List<FirstBannerBean>>>
+    fun getFirstBanner(): Observable<ResultData<List<FirstBannerBean>>>
 
     /**
      * 置顶文章
      */
     @GET("article/top/json")
-    fun getFirstArticleTop(): Call<ResultData<List<ArticleBean>>>
+    fun getFirstArticleTop(): Observable<ResultData<List<ArticleBean>>>
 
     /**
      * 常用网站

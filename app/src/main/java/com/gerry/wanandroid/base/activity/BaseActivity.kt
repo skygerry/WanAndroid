@@ -1,15 +1,17 @@
 package com.gerry.wanandroid.base.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gerry.wanandroid.base.BasePresenter
 import com.gerry.wanandroid.base.view.BaseView
 
 abstract class BaseActivity<V : BaseView, P : BasePresenter<V>> : AppCompatActivity() {
-    var presenter: P? = null
+    private var presenter: P? = null
     private var view: V? = null
 
+    fun getPresenter(): P? {
+        return presenter
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
