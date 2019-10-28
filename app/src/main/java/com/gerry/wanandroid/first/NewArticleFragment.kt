@@ -32,6 +32,8 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
 
     var currentPage = 0
 
+    var canLoadMore = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,6 +46,11 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
         first_new_rv.layoutManager = LinearLayoutManager(mContext)
         first_new_rv.adapter = newArticleAdapter
 
+        newArticleAdapter.setOnLoadMoreListener({
+            if (canLoadMore) {
+                getPresenter()?.getFirstArticleList(currentPage)
+            }
+        }, first_new_rv)
 
 
         getPresenter()?.getFirstBanner()
@@ -55,6 +62,15 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
     override fun getFirstArticleListSuccess(articleList: ArticleList) {
         if (articleList != null) {
             this.articleList.addAll(articleList.datas)
+
+            if (articleList.curPage < articleList.pageCount) {
+                currentPage++
+                canLoadMore = true
+                newArticleAdapter.loadMoreComplete()
+            } else {
+                canLoadMore = false
+                newArticleAdapter.loadMoreEnd()
+            }
             newArticleAdapter.setNewData(this.articleList)
         }
         Log.e("----->", articleList.datas.size.toString())
