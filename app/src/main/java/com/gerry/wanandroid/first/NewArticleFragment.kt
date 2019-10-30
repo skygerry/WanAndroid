@@ -2,6 +2,7 @@ package com.gerry.wanandroid.first
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build.ID
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ import com.gerry.wanandroid.first.mvp.IFirstView
 import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroid.http.bean.FirstBannerBean
+import com.gerry.wanandroid.web.CommentWebActivity
 import com.youth.banner.Banner
 import com.youth.banner.listener.OnBannerClickListener
 import com.youth.banner.loader.ImageLoader
@@ -41,7 +43,9 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
 
         newArticleAdapter.onItemClickListener =
             BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-
+                var intent = Intent(mContext, CommentWebActivity::class.java)
+                intent.putExtra("url", articleList[position].link)
+                startActivity(intent)
             }
         first_new_rv.layoutManager = LinearLayoutManager(mContext)
         first_new_rv.adapter = newArticleAdapter
@@ -52,6 +56,12 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
             }
         }, first_new_rv)
 
+        first_new_refresh.setOnRefreshListener {
+            currentPage = 0
+            canLoadMore = true
+            getPresenter()?.getFirstArticleTopAndList(currentPage)
+        }
+
 
         getPresenter()?.getFirstBanner()
 
@@ -61,6 +71,9 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
 
     override fun getFirstArticleListSuccess(articleList: ArticleList) {
         if (articleList != null) {
+            if (currentPage == 0) {
+                this.articleList.clear()
+            }
             this.articleList.addAll(articleList.datas)
 
             if (articleList.curPage < articleList.pageCount) {
@@ -71,6 +84,7 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
                 canLoadMore = false
                 newArticleAdapter.loadMoreEnd()
             }
+            first_new_refresh.isRefreshing = false
             newArticleAdapter.setNewData(this.articleList)
         }
         Log.e("----->", articleList.datas.size.toString())
@@ -80,6 +94,7 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
     }
 
     override fun getFirstBannerSuccess(data: List<FirstBannerBean>) {
+        newArticleAdapter.removeAllHeaderView()
         var urlList = mutableListOf<String>()
         if (!data.isNullOrEmpty()) {
             for (i in data) {
@@ -100,10 +115,9 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
 
         banner.setOnBannerClickListener { position ->
             if (data != null) {
-                val bundle = Bundle()
-                val banner = data[position]
-                bundle.putString("URL", banner.url)
-                bundle.putInt("ID", banner.id)
+                var intent = Intent(mContext, CommentWebActivity::class.java)
+                intent.putExtra("url", data[position - 1].url)
+                startActivity(intent)
             }
         }
 

@@ -10,7 +10,7 @@ import com.gerry.wanandroid.first.FirstFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.Fragment
-import com.gerry.wanandroid.category.CategoryFragment
+import com.gerry.wanandroid.category.SystemFragment
 import com.gerry.wanandroid.mine.MineFragment
 import com.gerry.wanandroid.project.ProjectFragment
 
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
     private var titles = mutableListOf("首页", "知识体系", "项目", "我的")
 
     var firstFragment: FirstFragment? = null
-    var categoryFragment: CategoryFragment? = null
+    var categoryFragment: SystemFragment? = null
     var projectFragment: ProjectFragment? = null
     var mineFragment: MineFragment? = null
 
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
 
     private fun initFragment() {
         firstFragment = FirstFragment()
-        categoryFragment = CategoryFragment()
+        categoryFragment = SystemFragment()
         projectFragment = ProjectFragment()
         mineFragment = MineFragment()
 

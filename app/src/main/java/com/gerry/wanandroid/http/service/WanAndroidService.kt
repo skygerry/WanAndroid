@@ -25,8 +25,10 @@ interface WanAndroidService {
      * @param page 页码
      */
     @GET("wxarticle/list/{id}/{page}/json")
-    fun getWxArticleList(@Path("id") id: Int,
-                         @Path("page") page: Int): Call<ResultData<ArticleList>>
+    fun getWxArticleList(
+        @Path("id") id: Int,
+        @Path("page") page: Int
+    ): Call<ResultData<ArticleList>>
 
     /**
      * 在某个公众号中搜索历史文章
@@ -35,9 +37,11 @@ interface WanAndroidService {
      * @param key 搜索词
      */
     @GET("wxarticle/list/{id}/{page}/json")
-    fun getWxArticleListByKey(@Path("id") id: Int,
-                              @Path("page") page: Int,
-                              @Query("k") key: String): Call<ResultData<ArticleList>>
+    fun getWxArticleListByKey(
+        @Path("id") id: Int,
+        @Path("page") page: Int,
+        @Query("k") key: String
+    ): Call<ResultData<ArticleList>>
 //--------------------------首页------------------------------------------------------
     /**
      * 首页文章列表
@@ -83,7 +87,7 @@ interface WanAndroidService {
      * 体系结构数据
      */
     @GET("tree/json")
-    fun getTree(): Call<ResultData<List<TreeBean>>>
+    fun getTree(): Observable<ResultData<List<TreeBean>>>
 
     /**
      * 知识体系下的文章
@@ -91,15 +95,19 @@ interface WanAndroidService {
      * @param cid 二级目录id
      */
     @GET("article/list/{page}/json")
-    fun getTreeArticle(@Path("page") page: Int,
-                       @Query("cid") cid: Int): Call<ResultData<ArticleList>>
+    fun getTreeArticle(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int
+    ): Observable<ResultData<ArticleList>>
 
     /**
      * 按照作者搜索文章
      */
     @GET("article/list/{page}/json")
-    fun getArticleByAuthor(@Path("page") page: Int,
-                           @Query("author") author: String): Call<ResultData<ArticleList>>
+    fun getArticleByAuthor(
+        @Path("page") page: Int,
+        @Query("author") author: String
+    ): Observable<ResultData<ArticleList>>
 
 //---------------------------导航---------------------------------------------------
     /**
@@ -119,8 +127,10 @@ interface WanAndroidService {
      * 项目列表数据
      */
     @GET("project/list/{page}/json")
-    fun getProjectListByCid(@Path("page") page: Int,
-                            @Query("cid") cid: Int): Call<ResultData<ArticleList>>
+    fun getProjectListByCid(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int
+    ): Call<ResultData<ArticleList>>
 
 
 }

@@ -1,12 +1,7 @@
 package com.gerry.wanandroid.category
 
 
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
 import com.gerry.wanandroid.R
 import com.gerry.wanandroid.base.fragement.BaseFragment
@@ -16,7 +11,7 @@ import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroid.http.bean.FirstBannerBean
 
-class CategoryFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstView {
+class SystemFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstView {
     override fun getFirstBannerSuccess(data: List<FirstBannerBean>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -37,7 +32,7 @@ class CategoryFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstView 
         return FirstPresenter()
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_category
+    override fun getLayoutId(): Int = R.layout.fragment_system
 
     override fun getFirstArticleListSuccess(articleList: ArticleList) {
         if (articleList != null) {
