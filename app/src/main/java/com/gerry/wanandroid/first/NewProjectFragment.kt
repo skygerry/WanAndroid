@@ -63,7 +63,7 @@ class NewProjectFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
                 articleList.clear()
             }
             articleList.addAll(data.datas)
-
+            projectAdapter.setNewData(this.articleList)
             if (data.curPage < data.pageCount) {
                 currentPage++
                 canLoadMore = true
@@ -73,7 +73,7 @@ class NewProjectFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
                 projectAdapter.loadMoreEnd()
             }
             first_project_refresh.isRefreshing = false
-            projectAdapter.setNewData(this.articleList)
+
         }
         Log.e("----->", data.datas.size.toString())
     }

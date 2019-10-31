@@ -75,7 +75,7 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
                 this.articleList.clear()
             }
             this.articleList.addAll(articleList.datas)
-
+            newArticleAdapter.setNewData(this.articleList)
             if (articleList.curPage < articleList.pageCount) {
                 currentPage++
                 canLoadMore = true
@@ -85,7 +85,7 @@ class NewArticleFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstVie
                 newArticleAdapter.loadMoreEnd()
             }
             first_new_refresh.isRefreshing = false
-            newArticleAdapter.setNewData(this.articleList)
+
         }
         Log.e("----->", articleList.datas.size.toString())
     }

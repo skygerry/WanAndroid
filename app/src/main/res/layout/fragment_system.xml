@@ -8,12 +8,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/system_parent_rv"
         android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@android:color/white"
+        android:overScrollMode="never" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/system_children_rv"
         android:layout_width="0dp"
-        android:layout_weight="3"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:overScrollMode="never" />
 
 </LinearLayout>
