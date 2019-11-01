@@ -15,7 +15,7 @@ import com.gerry.wanandroid.R
 import com.gerry.wanandroid.utils.SizeUtils
 
 
-class LoadingX5WebView : WebView {
+class LoadingWebView : WebView {
     lateinit var mProgressBar: ProgressBar
 
     private val client = object : WebViewClient() {
