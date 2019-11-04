@@ -74,13 +74,13 @@ interface WanAndroidService {
      * 常用网站
      */
     @GET("friend/json")
-    fun getFriendWeb(): Call<ResultData<List<FriendWebBean>>>
+    fun getFriendWeb(): Observable<ResultData<List<FriendWebBean>>>
 
     /**
      * 搜索热词
      */
     @GET("hotkey/json")
-    fun getHotKey(): Call<ResultData<List<HotWordBean>>>
+    fun getHotKey(): Observable<ResultData<List<HotWordBean>>>
 
 //---------------------------体系---------------------------------------------------
     /**
@@ -114,7 +114,7 @@ interface WanAndroidService {
      * 导航数据
      */
     @GET("navi/json")
-    fun getNaviData(): Call<ResultData<List<NaviBean>>>
+    fun getNaviData(): Observable<ResultData<List<NaviBean>>>
 
 //---------------------------项目---------------------------------------------------
     /**

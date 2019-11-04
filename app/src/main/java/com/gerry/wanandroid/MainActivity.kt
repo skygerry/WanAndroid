@@ -12,18 +12,20 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.Fragment
 import com.gerry.wanandroid.category.SystemFragment
 import com.gerry.wanandroid.mine.MineFragment
+import com.gerry.wanandroid.navigation.NavFragment
 import com.gerry.wanandroid.project.ProjectFragment
 
 
 class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView,
     BottomNavigationBar.OnTabSelectedListener {
 
-    private var titles = mutableListOf("首页", "知识体系", "项目", "我的")
+    private var titles = mutableListOf("首页", "知识体系", "项目", "导航", "我的")
 
     var firstFragment: FirstFragment? = null
     var categoryFragment: SystemFragment? = null
     var projectFragment: ProjectFragment? = null
     var mineFragment: MineFragment? = null
+    var navFragment: NavFragment? = null
 
     private var mFragment: Fragment? = null//当前显示的Fragment
 
@@ -42,14 +44,15 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
         main_bottom_navigation_bar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_DEFAULT)
         main_bottom_navigation_bar.setActiveColor(R.color.colorPrimary)
             .setInActiveColor(R.color.colorUnSelect)//设置Item未选中颜色方法
-            .setBarBackgroundColor("#FFFFFF");//背景颜色
+            .setBarBackgroundColor("#FFFFFF")//背景颜色
 
         //底部选项按钮
         main_bottom_navigation_bar
             .addItem(BottomNavigationItem(R.mipmap.home_select, titles[0]))
             .addItem(BottomNavigationItem(R.mipmap.category_select, titles[1]))
             .addItem(BottomNavigationItem(R.mipmap.project_select, titles[2]))
-            .addItem(BottomNavigationItem(R.mipmap.mine_select, titles[3]))
+            .addItem(BottomNavigationItem(R.mipmap.nav_select, titles[3]))
+            .addItem(BottomNavigationItem(R.mipmap.mine_select, titles[4]))
             .setFirstSelectedPosition(0)//默认选中页面
             .initialise()
     }
@@ -59,6 +62,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
         categoryFragment = SystemFragment()
         projectFragment = ProjectFragment()
         mineFragment = MineFragment()
+        navFragment = NavFragment()
 
         transaction = supportFragmentManager.beginTransaction()
         transaction?.add(R.id.main_layout_fragment, firstFragment!!)?.commit()
@@ -70,7 +74,8 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
             0 -> switchFragment(firstFragment!!)
             1 -> switchFragment(categoryFragment!!)
             2 -> switchFragment(projectFragment!!)
-            3 -> switchFragment(mineFragment!!)
+            3 -> switchFragment(navFragment!!)
+            4 -> switchFragment(mineFragment!!)
         }
     }
 

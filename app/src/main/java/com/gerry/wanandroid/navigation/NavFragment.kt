@@ -1,27 +1,26 @@
-package com.gerry.wanandroid.first
+package com.gerry.wanandroid.navigation
 
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+
 import com.gerry.wanandroid.R
 import com.gerry.wanandroid.base.BasePresenter
-
 import com.gerry.wanandroid.base.fragement.BaseFragment
 import com.gerry.wanandroid.base.view.BaseView
-import com.gerry.wanandroid.first.mvp.FirstPresenter
-import com.gerry.wanandroid.first.mvp.IFirstView
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.FirstBannerBean
+import com.gerry.wanandroid.first.NewArticleFragment
+import com.gerry.wanandroid.first.NewProjectFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.android.synthetic.main.fragment_nav.*
 
-
-class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
+class NavFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
     private var firstFragments = mutableListOf<Fragment>()
     private lateinit var firstArticleFragmentAdapter: FirstArticleFragmentAdapter
 
@@ -30,9 +29,9 @@ class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseVie
         firstFragments.add(NewArticleFragment())
         firstFragments.add(NewProjectFragment())
 
-        first_tab.addTab(first_tab.newTab().setText("最新博文"))
-        first_tab.addTab(first_tab.newTab().setText("最新项目"))
-        first_tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        nav_tab.addTab(nav_tab.newTab().setText("网站导航"))
+        nav_tab.addTab(nav_tab.newTab().setText("公众号"))
+        nav_tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 first_vp.currentItem = tab.position
             }
@@ -46,7 +45,7 @@ class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseVie
             }
         })
 
-        first_vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        nav_vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -56,7 +55,7 @@ class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseVie
             }
 
             override fun onPageSelected(position: Int) {
-                first_tab.setScrollPosition(position, 0f, true)
+                nav_tab.setScrollPosition(position, 0f, true)
 
             }
 
@@ -66,10 +65,10 @@ class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseVie
         })
 
         firstArticleFragmentAdapter = FirstArticleFragmentAdapter(activity?.supportFragmentManager)
-        first_vp.adapter = firstArticleFragmentAdapter
+        nav_vp.adapter = firstArticleFragmentAdapter
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_first
+    override fun getLayoutId(): Int = R.layout.fragment_nav
 
     override fun init() {}
     override fun createView(): BaseView = this

@@ -23,23 +23,15 @@ import com.gerry.wanandroid.web.CommentWebActivity
 import kotlinx.android.synthetic.main.fragment_new_project.*
 import kotlinx.android.synthetic.main.fragment_project_content.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM = "cid"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProjectContentFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class ProjectContentFragment : BaseFragment<IProjectView, ProjectPresenter>(), IProjectView {
     private var cid: Int = 0
 
     var articleList = mutableListOf<ArticleBean>()
     lateinit var projectAdapter: ProjectAdapter
 
-    var currentPage = 0
+    var currentPage = 1
 
     var canLoadMore = true
 
@@ -71,7 +63,7 @@ class ProjectContentFragment : BaseFragment<IProjectView, ProjectPresenter>(), I
         }, project_content_rv)
 
         project_content_refresh.setOnRefreshListener {
-            currentPage = 0
+            currentPage = 1
             canLoadMore = true
             getPresenter()?.getProjectArticle(currentPage,cid)
         }
@@ -84,7 +76,7 @@ class ProjectContentFragment : BaseFragment<IProjectView, ProjectPresenter>(), I
 
     override fun getArticleListSuccess(data: ArticleList) {
         if (data != null) {
-            if (currentPage == 0) {
+            if (currentPage == 1) {
                 articleList.clear()
             }
             articleList.addAll(data.datas)
