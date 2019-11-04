@@ -121,7 +121,7 @@ interface WanAndroidService {
      * 项目分类
      */
     @GET("project/tree/json")
-    fun getProjectTree(): Call<ResultData<List<TreeBean>>>
+    fun getProjectTree(): Observable<ResultData<List<TreeBean>>>
 
     /**
      * 项目列表数据
@@ -130,7 +130,7 @@ interface WanAndroidService {
     fun getProjectListByCid(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): Call<ResultData<ArticleList>>
+    ): Observable<ResultData<ArticleList>>
 
 
 }

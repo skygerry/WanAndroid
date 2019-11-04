@@ -2,66 +2,74 @@ package com.gerry.wanandroid.project
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 
 import com.gerry.wanandroid.R
 import com.gerry.wanandroid.base.fragement.BaseFragment
-import com.gerry.wanandroid.first.mvp.FirstPresenter
-import com.gerry.wanandroid.first.mvp.IFirstView
-import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.FirstBannerBean
+import com.gerry.wanandroid.http.bean.TreeBean
+import com.gerry.wanandroid.project.mvp.IProjectView
+import com.gerry.wanandroid.project.mvp.ProjectPresenter
+import kotlinx.android.synthetic.main.fragment_project.*
 
-class ProjectFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstView {
-    override fun getFirstBannerSuccess(data: List<FirstBannerBean>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class ProjectFragment : BaseFragment<IProjectView, ProjectPresenter>(), IProjectView {
+    var fragmentList = mutableListOf<ProjectContentFragment>()
+    var projectTree = mutableListOf<TreeBean>()
+
+    lateinit var projectFragmentAdapter: ProjectFragmentAdapter
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        projectFragmentAdapter = ProjectFragmentAdapter(childFragmentManager)
+        project_vp.adapter = projectFragmentAdapter
+        project_tabs?.setupWithViewPager(project_vp)
+
+        getPresenter()?.getProjectTree()
     }
 
-    override fun getFirstArticleTopSuccess(data: List<ArticleBean>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getProjectTreeSuccess(data: List<TreeBean>) {
+        if (!data.isNullOrEmpty()) {
+            for (i in data) {
+                fragmentList.add(ProjectContentFragment.newInstance(i.id))
+            }
+            projectTree.clear()
+            projectTree.addAll(data)
+            projectFragmentAdapter.notifyDataSetChanged()
+        }
     }
 
-    override fun init() {
-        getPresenter()?.getFirstArticleList(0)
+    override fun getArticleListSuccess(data: ArticleList) {
     }
 
-    override fun createView(): IFirstView {
-        return this
-    }
+    override fun showLoadingDialog(msg: String) {}
 
-    override fun createPresenter(): FirstPresenter {
-        return FirstPresenter()
-    }
+    override fun dismissLoadingDialog() {}
+
+    override fun onResponseError(msg: String?) {}
+
+    override fun createView(): IProjectView = this
+
+    override fun createPresenter(): ProjectPresenter = ProjectPresenter()
 
     override fun getLayoutId(): Int = R.layout.fragment_project
 
-    override fun getFirstArticleListSuccess(articleList: ArticleList) {
-        if (articleList != null) {
-            for (i in articleList.datas) {
-                Log.e("xyh", "onResponse: " + i.title)
-            }
-        }
-        Log.e("----->", articleList.datas.size.toString())
-    }
-    override fun getFirstArticleByTimeListSuccess(articleList: ArticleList) {
-        if (articleList != null) {
-            for (i in articleList.datas) {
-                Log.e("xyh", "onResponse: " + i.title)
-            }
-        }
-        Log.e("----->", articleList.datas.size.toString())
-    }
-    override fun showLoadingDialog(msg: String) {
-    }
+    override fun init() {}
 
-    override fun dismissLoadingDialog() {
-    }
+    inner class ProjectFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+        override fun getItem(position: Int): Fragment {
+            return fragmentList[position]
+        }
 
-    override fun onResponseError(msg: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        override fun getCount(): Int {
+            return fragmentList.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return projectTree[position].name
+        }
     }
 }
