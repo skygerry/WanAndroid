@@ -21,6 +21,9 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_first.*
 
 
+/**
+ * 首页
+ */
 class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
     private var firstFragments = mutableListOf<Fragment>()
     private lateinit var firstArticleFragmentAdapter: FirstArticleFragmentAdapter

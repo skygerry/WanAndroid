@@ -7,7 +7,7 @@ import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroid.http.rx.ResponseTransformer
 import io.reactivex.Observer
 
-class NavModel {
+class WxOfficialModel {
 
     fun getWxArticleChapters(observer: Observer<ResultData<List<TreeBean>>>) {
         val wxArticleChapters = BaseRetrofit.getRequest()?.getWxArticleChapters()

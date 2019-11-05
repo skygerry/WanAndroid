@@ -15,7 +15,9 @@ import com.gerry.wanandroid.base.view.BaseView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_system.*
 
-
+/**
+ * 知识体系
+ */
 class SystemFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
     private var systemFragments = mutableListOf<Fragment>()
     private lateinit var systemArticleFragmentAdapter: SystemArticleFragmentAdapter

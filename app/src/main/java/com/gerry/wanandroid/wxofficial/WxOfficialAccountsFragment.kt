@@ -5,10 +5,13 @@ import com.gerry.wanandroid.base.fragement.BaseFragment
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroid.http.bean.NaviBean
 import com.gerry.wanandroid.http.bean.TreeBean
-import com.gerry.wanandroid.wxofficial.mvp.INavView
-import com.gerry.wanandroid.wxofficial.mvp.NavPresenter
+import com.gerry.wanandroid.wxofficial.mvp.IWxOfficialView
+import com.gerry.wanandroid.wxofficial.mvp.WxOfficialPresenter
 
-class WxOfficialAccountsFragment : BaseFragment<INavView, NavPresenter>(), INavView {
+/**
+ * 公众号
+ */
+class WxOfficialAccountsFragment : BaseFragment<IWxOfficialView, WxOfficialPresenter>(), IWxOfficialView {
 
 
     override fun getNaviDataSuccess(data: List<NaviBean>) {
@@ -26,8 +29,8 @@ class WxOfficialAccountsFragment : BaseFragment<INavView, NavPresenter>(), INavV
 
     override fun init() {}
 
-    override fun createView(): INavView = this
-    override fun createPresenter(): NavPresenter = NavPresenter()
+    override fun createView(): IWxOfficialView = this
+    override fun createPresenter(): WxOfficialPresenter = WxOfficialPresenter()
     override fun getLayoutId(): Int = R.layout.fragment_wx_official_accounts
 
 }

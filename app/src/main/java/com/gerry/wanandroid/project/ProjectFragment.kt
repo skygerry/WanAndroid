@@ -15,6 +15,9 @@ import com.gerry.wanandroid.project.mvp.IProjectView
 import com.gerry.wanandroid.project.mvp.ProjectPresenter
 import kotlinx.android.synthetic.main.fragment_project.*
 
+/**
+ * 项目
+ */
 class ProjectFragment : BaseFragment<IProjectView, ProjectPresenter>(), IProjectView {
     var fragmentList = mutableListOf<ProjectContentFragment>()
     var projectTree = mutableListOf<TreeBean>()

@@ -5,8 +5,8 @@ import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroid.http.rx.BaseObserver
 
-class NavPresenter : BasePresenter<INavView>() {
-    var navModel: NavModel = NavModel()
+class WxOfficialPresenter : BasePresenter<IWxOfficialView>() {
+    var navModel: WxOfficialModel = WxOfficialModel()
 
 
 
