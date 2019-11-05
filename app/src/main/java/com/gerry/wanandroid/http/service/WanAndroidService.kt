@@ -28,7 +28,7 @@ interface WanAndroidService {
     fun getWxArticleList(
         @Path("id") id: Int,
         @Path("page") page: Int
-    ): Call<ResultData<ArticleList>>
+    ): Observable<ResultData<ArticleList>>
 
     /**
      * 在某个公众号中搜索历史文章
@@ -41,7 +41,7 @@ interface WanAndroidService {
         @Path("id") id: Int,
         @Path("page") page: Int,
         @Query("k") key: String
-    ): Call<ResultData<ArticleList>>
+    ): Observable<ResultData<ArticleList>>
 //--------------------------首页------------------------------------------------------
     /**
      * 首页文章列表

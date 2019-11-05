@@ -12,20 +12,20 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.Fragment
 import com.gerry.wanandroid.category.SystemFragment
 import com.gerry.wanandroid.mine.MineFragment
-import com.gerry.wanandroid.navigation.NavFragment
 import com.gerry.wanandroid.project.ProjectFragment
+import com.gerry.wanandroid.wxofficial.WxOfficialAccountsFragment
 
 
 class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView,
     BottomNavigationBar.OnTabSelectedListener {
 
-    private var titles = mutableListOf("首页", "知识体系", "项目", "导航", "我的")
+    private var titles = mutableListOf("首页", "知识体系", "项目", "公众号", "我的")
 
     var firstFragment: FirstFragment? = null
     var categoryFragment: SystemFragment? = null
     var projectFragment: ProjectFragment? = null
     var mineFragment: MineFragment? = null
-    var navFragment: NavFragment? = null
+    var navFragment: WxOfficialAccountsFragment? = null
 
     private var mFragment: Fragment? = null//当前显示的Fragment
 
@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
         categoryFragment = SystemFragment()
         projectFragment = ProjectFragment()
         mineFragment = MineFragment()
-        navFragment = NavFragment()
+        navFragment = WxOfficialAccountsFragment()
 
         transaction = supportFragmentManager.beginTransaction()
         transaction?.add(R.id.main_layout_fragment, firstFragment!!)?.commit()

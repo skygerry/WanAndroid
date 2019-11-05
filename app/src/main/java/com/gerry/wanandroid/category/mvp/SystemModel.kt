@@ -2,6 +2,7 @@ package com.gerry.wanandroid.category.mvp
 
 import com.gerry.wanandroid.http.BaseRetrofit
 import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroid.http.bean.NaviBean
 import com.gerry.wanandroid.http.bean.ResultData
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroid.http.rx.ResponseTransformer
@@ -26,4 +27,10 @@ class SystemModel {
         val articleListByAuthor = BaseRetrofit.getRequest()?.getArticleByAuthor(page, author)
         articleListByAuthor?.compose(ResponseTransformer.observeOnMainThread())?.subscribe(observer)
     }
+
+    fun getNaviData(observer: Observer<ResultData<List<NaviBean>>>) {
+        val naviData = BaseRetrofit.getRequest()?.getNaviData()
+        naviData?.compose(ResponseTransformer.observeOnMainThread())?.subscribe(observer)
+    }
+
 }

@@ -2,6 +2,7 @@ package com.gerry.wanandroid.category.mvp
 
 import com.gerry.wanandroid.base.BasePresenter
 import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroid.http.bean.NaviBean
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroid.http.rx.BaseObserver
 
@@ -42,6 +43,18 @@ class SystemPresenter : BasePresenter<ISystemView>() {
             override fun onFail(e: Throwable, errorMsg: String) {
             }
 
+        })
+    }
+
+    fun getNaviData() {
+        systemModel.getNaviData(object : BaseObserver<List<NaviBean>>() {
+            override fun onSuccess(data: List<NaviBean>) {
+                view?.getNaviDataSuccess(data)
+            }
+
+            override fun onFail(e: Throwable, errorMsg: String) {
+
+            }
         })
     }
 }

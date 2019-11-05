@@ -1,88 +1,88 @@
 package com.gerry.wanandroid.category
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.chad.library.adapter.base.BaseQuickAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.gerry.wanandroid.R
+import com.gerry.wanandroid.base.BasePresenter
 
 import com.gerry.wanandroid.base.fragement.BaseFragment
-import com.gerry.wanandroid.category.adapter.SystemChildrenAdapter
-import com.gerry.wanandroid.category.adapter.SystemParentAdapter
-import com.gerry.wanandroid.category.mvp.ISystemView
-import com.gerry.wanandroid.category.mvp.SystemPresenter
-import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.TreeBean
-import com.gerry.wanandroid.web.CommentWebActivity
+import com.gerry.wanandroid.base.view.BaseView
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_system.*
 
 
-class SystemFragment : BaseFragment<ISystemView, SystemPresenter>(), ISystemView {
-    lateinit var systemParentAdapter: SystemParentAdapter
-    lateinit var systemChildrenAdapter: SystemChildrenAdapter
-
+class SystemFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
+    private var systemFragments = mutableListOf<Fragment>()
+    private lateinit var systemArticleFragmentAdapter: SystemArticleFragmentAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        systemFragments.add(TreeFragment())
+        systemFragments.add(NetNavFragment())
 
-        systemParentAdapter = SystemParentAdapter(com.gerry.wanandroid.R.layout.item_system_parent)
-        systemParentAdapter.onItemClickListener =
-            BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-                systemParentAdapter.clickPosition = position
-                systemParentAdapter.notifyDataSetChanged()
-
-                systemChildrenAdapter.setNewData(systemParentAdapter.data[position].children)
-            }
-        system_parent_rv.layoutManager = LinearLayoutManager(mContext)
-        system_parent_rv.adapter = systemParentAdapter
-
-
-        systemChildrenAdapter =
-            SystemChildrenAdapter(com.gerry.wanandroid.R.layout.item_system_children)
-        systemChildrenAdapter.onItemClickListener =
-            BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-                var intent = Intent(mContext, SystemArticleActivity::class.java)
-                intent.putExtra("cid", systemChildrenAdapter.data[position].id)
-                intent.putExtra("title",systemChildrenAdapter.data[position].name)
-                startActivity(intent)
+        system_tab.addTab(system_tab.newTab().setText("体系"))
+        system_tab.addTab(system_tab.newTab().setText("导航"))
+        system_tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                system_vp.currentItem = tab.position
             }
 
-        system_children_rv.layoutManager = GridLayoutManager(mContext, 2)
-        system_children_rv.adapter = systemChildrenAdapter
+            override fun onTabUnselected(tab: TabLayout.Tab) {
 
+            }
 
-        getPresenter()?.getSystemTree()
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+
+        system_vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                system_tab.setScrollPosition(position, 0f, true)
+
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
+
+        systemArticleFragmentAdapter =
+            SystemArticleFragmentAdapter(activity?.supportFragmentManager)
+        system_vp.adapter = systemArticleFragmentAdapter
     }
 
+    override fun getLayoutId(): Int = R.layout.fragment_system
 
-    override fun getSystemTreeSuccess(data: List<TreeBean>) {
-        if (data != null) {
-            systemParentAdapter.setNewData(data)
-            systemChildrenAdapter.setNewData(data[0].children)
+    override fun init() {}
+    override fun createView(): BaseView = this
+    override fun createPresenter(): BasePresenter<BaseView> = BasePresenter()
+
+    override fun showLoadingDialog(msg: String) {}
+    override fun dismissLoadingDialog() {}
+    override fun onResponseError(msg: String?) {}
+
+
+    inner class SystemArticleFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+        override fun getItem(position: Int): Fragment {
+            return systemFragments[position]
         }
-    }
 
-    override fun getArticleListSuccess(data: ArticleList) {
-    }
-
-
-    override fun showLoadingDialog(msg: String) {
-    }
-
-    override fun dismissLoadingDialog() {
-    }
-
-    override fun onResponseError(msg: String?) {
-    }
-
-    override fun createView(): ISystemView = this
-
-    override fun createPresenter(): SystemPresenter = SystemPresenter()
-
-    override fun getLayoutId(): Int = com.gerry.wanandroid.R.layout.fragment_system
-
-    override fun init() {
+        override fun getCount(): Int {
+            return systemFragments.size
+        }
     }
 }

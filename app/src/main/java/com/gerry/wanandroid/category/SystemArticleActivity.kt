@@ -12,11 +12,13 @@ import com.gerry.wanandroid.category.mvp.ISystemView
 import com.gerry.wanandroid.category.mvp.SystemPresenter
 import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroid.http.bean.NaviBean
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroid.web.CommentWebActivity
 import kotlinx.android.synthetic.main.activity_system_article.*
 
 class SystemArticleActivity : BaseActivity<ISystemView, SystemPresenter>(), ISystemView {
+
     var articleList = mutableListOf<ArticleBean>()
     lateinit var systemArticleAdapter: SystemArticleAdapter
 
@@ -31,15 +33,18 @@ class SystemArticleActivity : BaseActivity<ISystemView, SystemPresenter>(), ISys
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initView()
-
         if (intent != null) {
             cid = intent.getIntExtra("cid", 0)
             if (intent.getStringExtra("title") != null) {
                 title = intent.getStringExtra("title")
             }
         }
+        initView()
 
+        getPresenter()?.getArticleByCid(currentPage, cid)
+    }
+
+    private fun initView() {
         system_title_tv.text = title
 
         systemArticleAdapter = SystemArticleAdapter(R.layout.item_article_system)
@@ -63,16 +68,6 @@ class SystemArticleActivity : BaseActivity<ISystemView, SystemPresenter>(), ISys
         system_back_iv.setOnClickListener {
             finish()
         }
-
-        getPresenter()?.getArticleByCid(currentPage, cid)
-    }
-
-    private fun initView() {
-
-    }
-
-    override fun getSystemTreeSuccess(data: List<TreeBean>) {
-
     }
 
     override fun getArticleListSuccess(data: ArticleList) {
@@ -95,19 +90,15 @@ class SystemArticleActivity : BaseActivity<ISystemView, SystemPresenter>(), ISys
         Log.e("----->", data.datas.size.toString())
     }
 
-    override fun showLoadingDialog(msg: String) {
-    }
+    override fun getSystemTreeSuccess(data: List<TreeBean>) {}
+    override fun getNaviDataSuccess(data: List<NaviBean>) {}
 
-    override fun dismissLoadingDialog() {
-    }
-
-    override fun onResponseError(msg: String?) {
-    }
+    override fun showLoadingDialog(msg: String) {}
+    override fun dismissLoadingDialog() {}
+    override fun onResponseError(msg: String?) {}
 
     override fun createView(): ISystemView = this
-
     override fun createPresenter(): SystemPresenter = SystemPresenter()
-
     override fun getLayoutId(): Int = R.layout.activity_system_article
 
 
