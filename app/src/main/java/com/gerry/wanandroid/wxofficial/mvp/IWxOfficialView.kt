@@ -6,7 +6,6 @@ import com.gerry.wanandroid.http.bean.NaviBean
 import com.gerry.wanandroid.http.bean.TreeBean
 
 interface IWxOfficialView : BaseView {
-    fun getNaviDataSuccess(data: List<NaviBean>)
     fun getWxArticleChapterSuccess(data: List<TreeBean>)
     fun getWxArticleListSuccess(data: ArticleList)
 }

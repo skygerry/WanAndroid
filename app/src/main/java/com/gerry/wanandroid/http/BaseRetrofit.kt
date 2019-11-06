@@ -1,5 +1,9 @@
 package com.gerry.wanandroid.http
 
+import android.content.Context
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.gerry.wanandroid.http.service.WanAndroidService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -44,26 +48,28 @@ class BaseRetrofit {
     /**
      * 初始化必要对象和参数
      */
-    fun init() {
+    fun init(context: Context) {
         val logInterceptor = HttpLoggingInterceptor()
         logInterceptor.level = (HttpLoggingInterceptor.Level.BODY)
+        var cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
         // 初始化okhttp
         val client = OkHttpClient.Builder()
-                .connectTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                .readTimeout(DEFAULT_READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                .writeTimeout(DEFAULT_WRITE_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                //错误重连
-                .retryOnConnectionFailure(true)
-                .addInterceptor(logInterceptor)
-                .build()
+            .connectTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            .readTimeout(DEFAULT_READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(DEFAULT_WRITE_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            //错误重连
+            .retryOnConnectionFailure(true)
+            .cookieJar(cookieJar)
+            .addInterceptor(logInterceptor)
+            .build()
 
         // 初始化Retrofit
         retrofit = Retrofit.Builder()
-                .client(client)
-                .baseUrl(WanAndroidService.HOST)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+            .client(client)
+            .baseUrl(WanAndroidService.HOST)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
 

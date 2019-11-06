@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import com.gerry.wanandroid.category.SystemFragment
 import com.gerry.wanandroid.mine.MineFragment
 import com.gerry.wanandroid.project.ProjectFragment
-import com.gerry.wanandroid.wxofficial.WxOfficialAccountsFragment
+import com.gerry.wanandroid.wxofficial.WxOfficialFragment
 
 
 class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView,
@@ -25,7 +25,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
     var categoryFragment: SystemFragment? = null
     var projectFragment: ProjectFragment? = null
     var mineFragment: MineFragment? = null
-    var navFragment: WxOfficialAccountsFragment? = null
+    var navFragment: WxOfficialFragment? = null
 
     private var mFragment: Fragment? = null//当前显示的Fragment
 
@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
         categoryFragment = SystemFragment()
         projectFragment = ProjectFragment()
         mineFragment = MineFragment()
-        navFragment = WxOfficialAccountsFragment()
+        navFragment = WxOfficialFragment()
 
         transaction = supportFragmentManager.beginTransaction()
         transaction?.add(R.id.main_layout_fragment, firstFragment!!)?.commit()
