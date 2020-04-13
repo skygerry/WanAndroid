@@ -13,36 +13,23 @@ import java.util.concurrent.TimeUnit
 import okhttp3.logging.HttpLoggingInterceptor
 
 
-class BaseRetrofit {
+object BaseRetrofit {
     private val DEFAULT_TIME_OUT = 10 //超时时间s
     private val DEFAULT_READ_TIME_OUT = 10 //读取时间s
     private val DEFAULT_WRITE_TIME_OUT = 10 //写入时间s
 
-    companion object {
-        private var mInstance: BaseRetrofit? = null
-        private var retrofit: Retrofit? = null
-        @Volatile
-        private var request: WanAndroidService? = null
+    private var retrofit: Retrofit? = null
 
-        fun getInstance(): BaseRetrofit? {
-            if (mInstance == null) {
-                synchronized(BaseRetrofit::class.java) {
-                    if (mInstance == null) {
-                        mInstance = BaseRetrofit()
-                    }
-                }
-            }
-            return mInstance
-        }
+    @Volatile
+    private var request: WanAndroidService? = null
 
-        fun getRequest(): WanAndroidService? {
-            if (request == null) {
-                synchronized(WanAndroidService::class.java) {
-                    request = retrofit!!.create(WanAndroidService::class.java!!)
-                }
+    fun getRequest(): WanAndroidService? {
+        if (request == null) {
+            synchronized(WanAndroidService::class.java) {
+                request = retrofit!!.create(WanAndroidService::class.java!!)
             }
-            return request
         }
+        return request
     }
 
     /**
