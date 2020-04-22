@@ -1,6 +1,6 @@
 package com.gerry.wanandroidmvvm.http
 
-import com.gerry.wanandroid.http.bean.ResultData
+import com.gerry.wanandroidmvvm.http.bean.ResultData
 import com.gerry.wanandroid.http.bean.*
 import retrofit2.http.GET
 import retrofit2.http.Path

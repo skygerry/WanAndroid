@@ -1,17 +1,17 @@
-package com.gerry.wanandroid.first
+package com.gerry.wanandroidmvvm.first
 
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.gerry.wanandroid.R
-import com.gerry.wanandroidmvvm.base.presenter.BasePresenter
-
-import com.gerry.wanandroidmvvm.base.fragement.BaseFragment
-import com.gerry.wanandroidmvvm.base.view.BaseView
+import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.first.newarticle.NewArticleFragment
+import com.gerry.wanandroidmvvm.first.newproject.NewProjectFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_first.*
 
@@ -19,9 +19,17 @@ import kotlinx.android.synthetic.main.fragment_first.*
 /**
  * 首页
  */
-class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
+class FirstFragment : Fragment() {
     private var firstFragments = mutableListOf<Fragment>()
     private lateinit var firstArticleFragmentAdapter: FirstArticleFragmentAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_first, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,17 +74,6 @@ class FirstFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseVie
         firstArticleFragmentAdapter = FirstArticleFragmentAdapter(activity?.supportFragmentManager)
         first_vp.adapter = firstArticleFragmentAdapter
     }
-
-    override fun getLayoutId(): Int = R.layout.fragment_first
-
-    override fun init() {}
-    override fun createView(): BaseView = this
-    override fun createPresenter(): BasePresenter<BaseView> = BasePresenter()
-
-    override fun showLoadingDialog(msg: String) {}
-    override fun dismissLoadingDialog() {}
-    override fun onResponseError(msg: String?) {}
-
 
     inner class FirstArticleFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         override fun getItem(position: Int): Fragment {

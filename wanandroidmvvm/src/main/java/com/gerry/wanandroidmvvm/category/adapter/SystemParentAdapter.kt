@@ -6,8 +6,8 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.R
 
-class SystemParentAdapter(layoutResId: Int) :
-    BaseQuickAdapter<TreeBean, BaseViewHolder>(layoutResId) {
+class SystemParentAdapter :
+    BaseQuickAdapter<TreeBean, BaseViewHolder>(R.layout.item_system_parent) {
 
     var clickPosition = 0
     override fun convert(helper: BaseViewHolder, item: TreeBean?) {

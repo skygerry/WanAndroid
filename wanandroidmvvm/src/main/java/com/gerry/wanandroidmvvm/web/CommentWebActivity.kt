@@ -1,4 +1,4 @@
-package com.gerry.wanandroid.web
+package com.gerry.wanandroidmvvm.web
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebView
+import com.gerry.wanandroidmvvm.R
 import kotlinx.android.synthetic.main.activity_comment_web.*
 
 
@@ -15,7 +16,7 @@ class CommentWebActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.gerry.wanandroid.R.layout.activity_comment_web)
+        setContentView(R.layout.activity_comment_web)
         initHardwareAccelerate()
 
         if (intent != null) {

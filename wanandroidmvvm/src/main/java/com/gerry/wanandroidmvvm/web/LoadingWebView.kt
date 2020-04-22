@@ -1,18 +1,16 @@
-package com.gerry.wanandroid.web
+package com.gerry.wanandroidmvvm.web
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.gerry.wanandroid.R
-import com.gerry.wanandroid.utils.SizeUtils
+import com.blankj.utilcode.util.SizeUtils
+import com.gerry.wanandroidmvvm.R
 
 
 class LoadingWebView : WebView {
@@ -68,7 +66,7 @@ class LoadingWebView : WebView {
                 android.R.attr.progressBarStyleHorizontal
             )
             mProgressBar.layoutParams = LayoutParams(
-                LayoutParams.MATCH_PARENT, SizeUtils.dp2px(context, 2f)
+                LayoutParams.MATCH_PARENT, SizeUtils.dp2px( 2f)
             )
             mProgressBar.progressDrawable = context.resources
                 .getDrawable(R.drawable.drawable_webview_progress)

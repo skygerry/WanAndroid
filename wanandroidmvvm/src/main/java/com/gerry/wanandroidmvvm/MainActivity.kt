@@ -1,23 +1,20 @@
 package com.gerry.wanandroidmvvm
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
-import com.gerry.wanandroidmvvm.base.presenter.BasePresenter
-import com.gerry.wanandroidmvvm.base.activity.BaseActivity
-import com.gerry.wanandroidmvvm.base.view.BaseView
-import com.gerry.wanandroid.first.FirstFragment
+import com.gerry.wanandroidmvvm.first.FirstFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.Fragment
-import com.gerry.wanandroid.category.SystemFragment
-import com.gerry.wanandroid.mine.MineFragment
-import com.gerry.wanandroid.project.ProjectFragment
-import com.gerry.wanandroid.wxofficial.WxOfficialFragment
+import com.gerry.wanandroidmvvm.category.SystemFragment
+import com.gerry.wanandroidmvvm.mine.MineFragment
+import com.gerry.wanandroidmvvm.project.ProjectFragment
+import com.gerry.wanandroidmvvm.wxofficial.WxOfficialFragment
 
 
-class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView,
-    BottomNavigationBar.OnTabSelectedListener {
+class MainActivity : AppCompatActivity(), BottomNavigationBar.OnTabSelectedListener {
 
     private var titles = mutableListOf("首页", "知识体系", "项目", "公众号", "我的")
 
@@ -32,6 +29,7 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
     private var transaction: FragmentTransaction? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         initView()
 
@@ -101,26 +99,4 @@ class MainActivity : BaseActivity<BaseView, BasePresenter<BaseView>>(), BaseView
             mFragment = fragment
         }
     }
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
-    }
-
-    override fun createView(): BaseView {
-        return this
-    }
-
-    override fun createPresenter(): BasePresenter<BaseView> {
-        return BasePresenter()
-    }
-
-    override fun showLoadingDialog(msg: String) {
-    }
-
-    override fun dismissLoadingDialog() {
-    }
-
-    override fun onResponseError(msg: String?) {
-    }
-
 }

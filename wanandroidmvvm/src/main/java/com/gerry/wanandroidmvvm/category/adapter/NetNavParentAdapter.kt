@@ -6,8 +6,8 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.gerry.wanandroid.http.bean.NaviBean
 import com.gerry.wanandroidmvvm.R
 
-class NetNavParentAdapter(layoutResId: Int) :
-    BaseQuickAdapter<NaviBean, BaseViewHolder>(layoutResId) {
+class NetNavParentAdapter :
+    BaseQuickAdapter<NaviBean, BaseViewHolder>(R.layout.item_system_parent) {
 
     var clickPosition = 0
     override fun convert(helper: BaseViewHolder, item: NaviBean?) {

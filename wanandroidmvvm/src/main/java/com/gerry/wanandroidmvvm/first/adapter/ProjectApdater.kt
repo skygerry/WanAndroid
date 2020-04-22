@@ -1,13 +1,13 @@
-package com.gerry.wanandroid.first.adapter
+package com.gerry.wanandroidmvvm.first.adapter
 
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.gerry.wanandroid.R
 import com.gerry.wanandroid.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.R
 
-class ProjectAdapter(layoutResId: Int) :
-    BaseQuickAdapter<ArticleBean, BaseViewHolder>(layoutResId) {
+class ProjectAdapter :
+    BaseQuickAdapter<ArticleBean, BaseViewHolder>(R.layout.item_project) {
     override fun convert(helper: BaseViewHolder, item: ArticleBean?) {
         helper.setText(R.id.project_name_item_iv, item?.title)
 

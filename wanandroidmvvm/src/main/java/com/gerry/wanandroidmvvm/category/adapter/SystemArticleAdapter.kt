@@ -6,8 +6,8 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroidmvvm.R
 
-class SystemArticleAdapter(layoutResId: Int) :
-    BaseQuickAdapter<ArticleBean, BaseViewHolder>(layoutResId) {
+class SystemArticleAdapter :
+    BaseQuickAdapter<ArticleBean, BaseViewHolder>(R.layout.item_article_system) {
     override fun convert(helper: BaseViewHolder, item: ArticleBean?) {
         helper.setText(R.id.article_system_name_tv, item?.title)
 

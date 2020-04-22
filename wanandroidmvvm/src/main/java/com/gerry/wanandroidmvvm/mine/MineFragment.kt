@@ -1,62 +1,19 @@
-package com.gerry.wanandroid.mine
+package com.gerry.wanandroidmvvm.mine
 
 
-import android.util.Log
+import android.os.Bundle
+import com.gerry.basemvvm.base.BaseFragment
 
-import com.gerry.wanandroid.R
-import com.gerry.wanandroidmvvm.base.fragement.BaseFragment
-import com.gerry.wanandroid.first.mvp.FirstPresenter
-import com.gerry.wanandroid.first.mvp.IFirstView
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.FirstBannerBean
+import com.gerry.wanandroidmvvm.R
 
-class MineFragment : BaseFragment<IFirstView, FirstPresenter>(), IFirstView {
-    override fun getFirstArticleTopSuccess(data: List<ArticleBean>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class MineFragment : BaseFragment<MineViewModel>() {
+
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
     }
 
-    override fun getFirstBannerSuccess(data: List<FirstBannerBean>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun lazyLoadData() {
+        super.lazyLoadData()
     }
-
-    override fun init() {
-        getPresenter()?.getFirstArticleList(0)
-    }
-
-    override fun createView(): IFirstView {
-        return this
-    }
-
-    override fun createPresenter(): FirstPresenter {
-        return FirstPresenter()
-    }
-
     override fun getLayoutId(): Int = R.layout.fragment_mine
-
-    override fun getFirstArticleListSuccess(articleList: ArticleList) {
-        if (articleList != null) {
-            for (i in articleList.datas) {
-                Log.e("xyh", "onResponse: " + i.title)
-            }
-        }
-        Log.e("----->", articleList.datas.size.toString())
-    }
-    override fun getFirstArticleByTimeListSuccess(articleList: ArticleList) {
-        if (articleList != null) {
-            for (i in articleList.datas) {
-                Log.e("xyh", "onResponse: " + i.title)
-            }
-        }
-        Log.e("----->", articleList.datas.size.toString())
-    }
-    override fun showLoadingDialog(msg: String) {
-    }
-
-    override fun dismissLoadingDialog() {
-    }
-
-    override fun onResponseError(msg: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

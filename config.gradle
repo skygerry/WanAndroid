@@ -1,0 +1,58 @@
+ext {
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.3",
+            minSdkVersion    : 21,
+            targetSdkVersion : 29,
+            versionCode      : 1,
+            versionName      : "1.0"
+
+
+    ]
+
+    versions = [
+            appcompat       : "1.2.0-beta01",
+            material        : "1.2.0-alpha05",
+            coreKtx         : "1.3.0-beta01",
+            constraintlayout: "2.0.0-beta4",
+            legacySupportV4 : "1.0.0",
+            junit           : "4.12",
+            lifecycle       : "2.2.0",
+            annotation      : "1.1.0",
+            retrofit        : "2.8.1"
+    ]
+
+    androidxs = [
+            appcompat            : "androidx.appcompat:appcompat:${versions['appcompat']}",
+            material             : "com.google.android.material:material:${versions['material']}",
+            coreKtx              : "androidx.core:core-ktx:${versions['coreKtx']}",
+            constraintlayout     : "androidx.constraintlayout:constraintlayout:${versions['constraintlayout']}",
+            legacySupportV4      : "androidx.legacy:legacy-support-v4:${versions['legacySupportV4']}",
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:${versions['lifecycle']}",
+            lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions['lifecycle']}",
+            uutilcodex           : "com.blankj:utilcodex:1.28.0"
+    ]
+
+    network = [
+            retrofit          : "com.squareup.retrofit2:retrofit:${versions['retrofit']}",
+            converterGson     : "com.squareup.retrofit2:converter-gson:${versions['retrofit']}",
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:4.5.0",
+            cookie            : "com.github.franmontiel:PersistentCookieJar:v1.0.1"
+    ]
+
+    dependencies = [
+            bottomNav               : "com.ashokvarma.android:bottom-navigation-bar:2.1.0",
+            brvah                   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47-androidx",
+            glide                   : "com.github.bumptech.glide:glide:4.11.0",
+            glideCompiler           : "com.github.bumptech.glide:compiler:4.11.0",
+            banner                  : "com.youth.banner:banner:1.4.1",
+            roundedImage            : "com.makeramen:roundedimageview:2.3.0",
+            //material-dialogs
+            materialDialogsLifecycle: "com.afollestad.material-dialogs:lifecycle:3.1.1",
+            materialDialogsCore     : "com.afollestad.material-dialogs:core:3.1.1",
+
+    ]
+
+    androidxs = androidxs.values()
+    network = network.values()
+}

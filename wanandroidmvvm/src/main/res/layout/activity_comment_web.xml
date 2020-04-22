@@ -36,7 +36,7 @@
             android:background="@color/colorFolder" />
     </RelativeLayout>
 
-    <com.gerry.wanandroid.web.LoadingWebView
+    <com.gerry.wanandroidmvvm.web.LoadingWebView
         android:id="@+id/comment_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

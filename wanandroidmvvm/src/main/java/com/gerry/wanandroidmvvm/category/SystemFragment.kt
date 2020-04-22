@@ -1,26 +1,34 @@
-package com.gerry.wanandroid.category
+package com.gerry.wanandroidmvvm.category
 
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.gerry.wanandroid.R
-import com.gerry.wanandroidmvvm.base.presenter.BasePresenter
-
-import com.gerry.wanandroidmvvm.base.fragement.BaseFragment
-import com.gerry.wanandroidmvvm.base.view.BaseView
+import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.tree.TreeFragment
+import com.gerry.wanandroidmvvm.category.netnav.NetNavFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_system.*
 
 /**
  * 知识体系
  */
-class SystemFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseView {
+class SystemFragment : Fragment() {
     private var systemFragments = mutableListOf<Fragment>()
     private lateinit var systemArticleFragmentAdapter: SystemArticleFragmentAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_system, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,17 +74,6 @@ class SystemFragment : BaseFragment<BaseView, BasePresenter<BaseView>>(), BaseVi
             SystemArticleFragmentAdapter(activity?.supportFragmentManager)
         system_vp.adapter = systemArticleFragmentAdapter
     }
-
-    override fun getLayoutId(): Int = R.layout.fragment_system
-
-    override fun init() {}
-    override fun createView(): BaseView = this
-    override fun createPresenter(): BasePresenter<BaseView> = BasePresenter()
-
-    override fun showLoadingDialog(msg: String) {}
-    override fun dismissLoadingDialog() {}
-    override fun onResponseError(msg: String?) {}
-
 
     inner class SystemArticleFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         override fun getItem(position: Int): Fragment {

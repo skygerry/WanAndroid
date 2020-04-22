@@ -1,2 +1,3 @@
 include ':wanandroidmvp'
 include ':wanandroidmvvm'
+include ':basemvvm'

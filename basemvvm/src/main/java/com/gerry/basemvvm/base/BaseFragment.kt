@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -108,12 +107,29 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun createViewModel() {
         val type = javaClass.genericSuperclass
         if (type is ParameterizedType) {
             val tp = type.actualTypeArguments[0]
             val tClass = tp as? Class<VM> ?: BaseViewModel::class.java
-            viewModel = ViewModelProvider(this).get(tClass) as VM
+            viewModel = ViewModelProvider(this.viewModelStore,ViewModelFactory()).get(tClass) as VM
+        }
+    }
+
+    class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
+
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            /* val type = modelClass.constructors[0].parameterTypes
+             if (type.isNotEmpty()) {
+                 val tClass = type[0]
+                 if (HomeRepository::class.java.isAssignableFrom(tClass)) {
+                     return modelClass.getConstructor(tClass).newInstance(Injection.HomeRepository())
+                 } else if (XXXRepository::class.java.isAssignableFrom(tClass)) {
+                     return modelClass.getConstructor(tClass).newInstance(Injection.XXXRepository())
+                 }
+             }*/
+            return modelClass.newInstance()
         }
     }
 }

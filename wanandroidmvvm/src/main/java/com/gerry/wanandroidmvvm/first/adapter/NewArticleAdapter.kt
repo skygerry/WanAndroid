@@ -1,13 +1,13 @@
-package com.gerry.wanandroid.first.adapter
+package com.gerry.wanandroidmvvm.first.adapter
 
 import android.text.TextUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.gerry.wanandroid.R
 import com.gerry.wanandroid.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.R
 
-class NewArticleAdapter(layoutResId: Int) :
-    BaseQuickAdapter<ArticleBean, BaseViewHolder>(layoutResId) {
+class NewArticleAdapter :
+    BaseQuickAdapter<ArticleBean, BaseViewHolder>(R.layout.item_article_new) {
     override fun convert(helper: BaseViewHolder, item: ArticleBean?) {
         helper.setText(R.id.article_new_name_tv, item?.title)
 
