@@ -1,6 +1,6 @@
-package com.gerry.wanandroidmvvm.base.http
+package com.gerry.basemvvm.network
 
-import com.gerry.wanandroidmvvm.BuildConfig
+import com.gerry.basemvvm.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
