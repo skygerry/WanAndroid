@@ -4,6 +4,7 @@ package com.gerry.wanandroidmvvm.category.tree
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerry.basemvvm.base.BaseFragment
@@ -13,6 +14,7 @@ import com.gerry.wanandroidmvvm.category.adapter.SystemParentAdapter
 import com.gerry.wanandroid.http.bean.Children
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.category.systemarticle.SystemArticleActivity
 import kotlinx.android.synthetic.main.fragment_tree.*
 
@@ -70,4 +72,8 @@ class TreeFragment : BaseFragment<TreeViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_tree
+
+    override fun createViewModel(): TreeViewModel {
+        return ViewModelProvider(this).get(TreeViewModel::class.java)
+    }
 }

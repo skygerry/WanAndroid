@@ -37,7 +37,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onVisible()
-        createViewModel()
+        viewModel = createViewModel()
         lifecycle.addObserver(viewModel)
         registerDefaultUIChange()
         initView(savedInstanceState)
@@ -106,30 +106,5 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
             }
         }
     }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun createViewModel() {
-        val type = javaClass.genericSuperclass
-        if (type is ParameterizedType) {
-            val tp = type.actualTypeArguments[0]
-            val tClass = tp as? Class<VM> ?: BaseViewModel::class.java
-            viewModel = ViewModelProvider(this.viewModelStore,ViewModelFactory()).get(tClass) as VM
-        }
-    }
-
-    class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
-
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            /* val type = modelClass.constructors[0].parameterTypes
-             if (type.isNotEmpty()) {
-                 val tClass = type[0]
-                 if (HomeRepository::class.java.isAssignableFrom(tClass)) {
-                     return modelClass.getConstructor(tClass).newInstance(Injection.HomeRepository())
-                 } else if (XXXRepository::class.java.isAssignableFrom(tClass)) {
-                     return modelClass.getConstructor(tClass).newInstance(Injection.XXXRepository())
-                 }
-             }*/
-            return modelClass.newInstance()
-        }
-    }
+    abstract fun createViewModel(): VM
 }

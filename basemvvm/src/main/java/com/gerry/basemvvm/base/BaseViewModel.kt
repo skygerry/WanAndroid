@@ -2,6 +2,7 @@ package com.gerry.basemvvm.base
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.Utils
 import com.gerry.basemvvm.event.Message
@@ -10,7 +11,7 @@ import com.gerry.basemvvm.event.SingleLiveEvent
 import com.gerry.basemvvm.network.ExceptionUtil
 import kotlinx.coroutines.*
 
-open class BaseViewModel : AndroidViewModel(Utils.getApp()), LifecycleObserver {
+open class BaseViewModel : ViewModel(), LifecycleObserver {
     val defUI: UIChange by lazy { UIChange() }
 
     /**

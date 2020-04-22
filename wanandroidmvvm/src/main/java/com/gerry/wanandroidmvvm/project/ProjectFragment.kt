@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.gerry.basemvvm.base.BaseFragment
 
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.project.content.ProjectContentFragment
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import kotlinx.android.synthetic.main.fragment_project.*
 
 /**
@@ -62,5 +64,9 @@ class ProjectFragment : BaseFragment<ProjectViewModel>() {
         override fun getPageTitle(position: Int): CharSequence? {
             return projectTree[position].name
         }
+    }
+
+    override fun createViewModel(): ProjectViewModel {
+        return ViewModelProvider(this).get(ProjectViewModel::class.java)
     }
 }

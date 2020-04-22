@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gerry.basemvvm.base.BaseActivity
@@ -90,4 +92,7 @@ class SystemArticleActivity : BaseActivity<SystemArticleViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.activity_system_article
+    override fun createViewModel(): SystemArticleViewModel {
+        return ViewModelProvider(this).get(SystemArticleViewModel::class.java)
+    }
 }

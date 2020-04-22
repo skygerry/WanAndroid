@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -15,6 +16,7 @@ import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroid.http.bean.FirstBannerBean
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.fragment_new_article.*
@@ -134,4 +136,8 @@ class NewArticleFragment : BaseFragment<NewArticleViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_new_article
+
+    override fun createViewModel(): NewArticleViewModel {
+        return ViewModelProvider(this).get(NewArticleViewModel::class.java)
+    }
 }

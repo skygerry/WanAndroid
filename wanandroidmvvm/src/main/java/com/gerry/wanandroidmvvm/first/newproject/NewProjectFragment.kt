@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerry.basemvvm.base.BaseFragment
 import com.gerry.wanandroidmvvm.first.adapter.ProjectAdapter
 import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import kotlinx.android.synthetic.main.fragment_new_project.*
 
@@ -61,7 +63,7 @@ class NewProjectFragment : BaseFragment<NewProjectViewModel>() {
         }
     }
 
-    fun getFirstArticleByTimeListSuccess(data: ArticleList) {
+    private fun getFirstArticleByTimeListSuccess(data: ArticleList) {
         if (data != null) {
             if (currentPage == 0) {
                 articleList.clear()
@@ -83,4 +85,8 @@ class NewProjectFragment : BaseFragment<NewProjectViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_new_project
+
+    override fun createViewModel(): NewProjectViewModel {
+        return ViewModelProvider(this).get(NewProjectViewModel::class.java)
+    }
 }

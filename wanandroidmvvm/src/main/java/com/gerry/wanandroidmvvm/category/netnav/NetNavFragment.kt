@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerry.basemvvm.base.BaseFragment
@@ -15,6 +16,7 @@ import com.gerry.wanandroidmvvm.R
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import com.gerry.wanandroidmvvm.category.adapter.NetNavChildrenAdapter
 import com.gerry.wanandroidmvvm.category.adapter.NetNavParentAdapter
+import com.gerry.wanandroidmvvm.category.systemarticle.SystemArticleViewModel
 import kotlinx.android.synthetic.main.fragment_net_nav.*
 
 class NetNavFragment : BaseFragment<NetNavViewModel>() {
@@ -72,4 +74,7 @@ class NetNavFragment : BaseFragment<NetNavViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_net_nav
 
+    override fun createViewModel(): NetNavViewModel {
+        return ViewModelProvider(this).get(NetNavViewModel::class.java)
+    }
 }

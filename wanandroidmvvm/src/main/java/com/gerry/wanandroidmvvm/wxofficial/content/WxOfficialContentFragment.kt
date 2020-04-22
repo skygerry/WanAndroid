@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gerry.basemvvm.base.BaseFragment
@@ -14,6 +15,7 @@ import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import kotlinx.android.synthetic.main.fragment_wx_official_content.*
 
 private const val ARG_PARAM = "id"
@@ -90,6 +92,10 @@ class WxOfficialContentFragment : BaseFragment<WxOfficialContentViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_wx_official_content
+
+    override fun createViewModel(): WxOfficialContentViewModel {
+        return ViewModelProvider(this).get(WxOfficialContentViewModel::class.java)
+    }
 
     companion object {
         @JvmStatic

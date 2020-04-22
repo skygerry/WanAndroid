@@ -24,7 +24,7 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(getLayoutId())
-        createViewModel()
+        viewModel = createViewModel()
         lifecycle.addObserver(viewModel)
         registerDefaultUIChange()
         initView(savedInstanceState)
@@ -75,13 +75,5 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
         }
     }
 
-    private fun createViewModel() {
-        val type = javaClass.genericSuperclass
-        if (type is ParameterizedType) {
-            val tp = type.actualTypeArguments[0]
-            val tClass = tp as? Class<VM> ?: BaseViewModel::class.java
-            viewModel = ViewModelProvider(this).get(tClass) as VM
-        }
-    }
-
+    abstract fun createViewModel(): VM
 }

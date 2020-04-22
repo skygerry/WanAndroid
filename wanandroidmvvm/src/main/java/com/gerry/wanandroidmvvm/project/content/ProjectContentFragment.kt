@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gerry.basemvvm.base.BaseFragment
@@ -13,6 +14,7 @@ import com.gerry.wanandroidmvvm.first.adapter.ProjectAdapter
 import com.gerry.wanandroid.http.bean.ArticleBean
 import com.gerry.wanandroid.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import kotlinx.android.synthetic.main.fragment_project_content.*
 
@@ -89,6 +91,10 @@ class ProjectContentFragment : BaseFragment<ProjectContentViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_project_content
+
+    override fun createViewModel(): ProjectContentViewModel {
+        return ViewModelProvider(this).get(ProjectContentViewModel::class.java)
+    }
 
     companion object {
         @JvmStatic

@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.gerry.basemvvm.base.BaseFragment
 import com.gerry.wanandroid.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.wxofficial.content.WxOfficialContentFragment
 import com.gerry.wanandroidmvvm.R
+import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import kotlinx.android.synthetic.main.fragment_wx_official.*
 
 /**
@@ -50,6 +52,10 @@ class WxOfficialFragment : BaseFragment<WxOfficialViewModel>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_wx_official
+
+    override fun createViewModel(): WxOfficialViewModel {
+        return ViewModelProvider(this).get(WxOfficialViewModel::class.java)
+    }
 
     inner class WxOfficialFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         override fun getItem(position: Int): Fragment {
