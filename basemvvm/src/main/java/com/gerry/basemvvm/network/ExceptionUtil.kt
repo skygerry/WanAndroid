@@ -1,7 +1,6 @@
 package com.gerry.basemvvm.network
 
 import android.net.ParseException
-import com.gerry.wanandroidmvvm.basemvvm.network.ERROR
 import com.google.gson.JsonParseException
 import com.google.gson.stream.MalformedJsonException
 import org.json.JSONException

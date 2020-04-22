@@ -1,7 +1,6 @@
 package com.gerry.basemvvm.network
 
 import com.gerry.basemvvm.base.IBaseResponse
-import com.gerry.wanandroidmvvm.basemvvm.network.ERROR
 
 class ApiException : Exception {
     var code: Int = 0

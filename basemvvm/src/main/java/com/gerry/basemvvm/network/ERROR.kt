@@ -1,4 +1,4 @@
-package com.gerry.wanandroidmvvm.basemvvm.network
+package com.gerry.basemvvm.network
 
 enum class ERROR(private val code:Int,private val err:String) {
     /**
