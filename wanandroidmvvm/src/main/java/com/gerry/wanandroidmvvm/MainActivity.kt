@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationBar.OnTabSelectedListe
 
     private var titles = mutableListOf("首页", "知识体系", "项目", "公众号", "我的")
 
-    var firstFragment: FirstFragment? = null
-    var categoryFragment: SystemFragment? = null
-    var projectFragment: ProjectFragment? = null
-    var mineFragment: MineFragment? = null
-    var navFragment: WxOfficialFragment? = null
+    private lateinit var firstFragment: FirstFragment
+    private lateinit var categoryFragment: SystemFragment
+    private lateinit var projectFragment: ProjectFragment
+    private lateinit var mineFragment: MineFragment
+    private lateinit var navFragment: WxOfficialFragment
 
     private var mFragment: Fragment? = null//当前显示的Fragment
 
@@ -63,17 +63,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationBar.OnTabSelectedListe
         navFragment = WxOfficialFragment()
 
         transaction = supportFragmentManager.beginTransaction()
-        transaction?.add(R.id.main_layout_fragment, firstFragment!!)?.commit()
+        transaction?.add(R.id.main_layout_fragment, firstFragment)?.commit()
         mFragment = firstFragment
     }
 
     override fun onTabSelected(position: Int) {
         when (position) {
-            0 -> switchFragment(firstFragment!!)
-            1 -> switchFragment(categoryFragment!!)
-            2 -> switchFragment(projectFragment!!)
-            3 -> switchFragment(navFragment!!)
-            4 -> switchFragment(mineFragment!!)
+            0 -> switchFragment(firstFragment)
+            1 -> switchFragment(categoryFragment)
+            2 -> switchFragment(projectFragment)
+            3 -> switchFragment(navFragment)
+            4 -> switchFragment(mineFragment)
         }
     }
 
