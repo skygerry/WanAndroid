@@ -2,16 +2,16 @@ package com.gerry.wanandroidmvvm
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
-import com.gerry.wanandroidmvvm.first.FirstFragment
-import kotlinx.android.synthetic.main.activity_main.*
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.Fragment
 import com.gerry.wanandroidmvvm.category.SystemFragment
+import com.gerry.wanandroidmvvm.first.FirstFragment
 import com.gerry.wanandroidmvvm.mine.MineFragment
 import com.gerry.wanandroidmvvm.project.ProjectFragment
 import com.gerry.wanandroidmvvm.wxofficial.WxOfficialFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationBar.OnTabSelectedListener {
