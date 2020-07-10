@@ -1,4 +1,4 @@
-package com.gerry.wanandroid.http.bean
+package com.gerry.wanandroidmvvm.http.bean
 
 import com.google.gson.annotations.SerializedName
 

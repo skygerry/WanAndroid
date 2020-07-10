@@ -3,7 +3,7 @@ package com.gerry.wanandroidmvvm.category.adapter
 import android.text.TextUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.gerry.wanandroid.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
 import com.gerry.wanandroidmvvm.R
 
 class SystemArticleAdapter :

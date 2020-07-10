@@ -3,7 +3,7 @@ package com.gerry.wanandroidmvvm.category.adapter
 import androidx.core.content.ContextCompat
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.gerry.wanandroid.http.bean.NaviBean
+import com.gerry.wanandroidmvvm.http.bean.NaviBean
 import com.gerry.wanandroidmvvm.R
 
 class NetNavParentAdapter :

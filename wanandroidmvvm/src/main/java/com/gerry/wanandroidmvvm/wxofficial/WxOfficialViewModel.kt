@@ -2,7 +2,7 @@ package com.gerry.wanandroidmvvm.wxofficial
 
 import com.gerry.basemvvm.base.BaseViewModel
 import com.gerry.basemvvm.event.SingleLiveEvent
-import com.gerry.wanandroid.http.bean.TreeBean
+import com.gerry.wanandroidmvvm.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.http.WanAndroidRepository
 
 class WxOfficialViewModel:BaseViewModel() {

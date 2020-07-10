@@ -7,10 +7,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gerry.basemvvm.base.BaseFragment
-import com.gerry.wanandroid.http.bean.TreeBean
+import com.gerry.wanandroidmvvm.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.wxofficial.content.WxOfficialContentFragment
 import com.gerry.wanandroidmvvm.R
-import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import kotlinx.android.synthetic.main.fragment_wx_official.*
 
 /**

@@ -16,7 +16,7 @@ object WanAndroidRetrofit : BaseRetrofit() {
 
     val service by lazy { getService(WanAndroidService::class.java, WanAndroidService.BASE_URL) }
 
-    var cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(CONTEXT))
+    private var cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(CONTEXT))
 
 
     override fun handleBuilder(builder: OkHttpClient.Builder) {

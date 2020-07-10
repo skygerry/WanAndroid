@@ -2,21 +2,17 @@ package com.gerry.wanandroidmvvm.category.netnav
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerry.basemvvm.base.BaseFragment
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.NaviBean
-import com.gerry.wanandroid.http.bean.TreeBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.NaviBean
 import com.gerry.wanandroidmvvm.R
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import com.gerry.wanandroidmvvm.category.adapter.NetNavChildrenAdapter
 import com.gerry.wanandroidmvvm.category.adapter.NetNavParentAdapter
-import com.gerry.wanandroidmvvm.category.systemarticle.SystemArticleViewModel
 import kotlinx.android.synthetic.main.fragment_net_nav.*
 
 class NetNavFragment : BaseFragment<NetNavViewModel>() {

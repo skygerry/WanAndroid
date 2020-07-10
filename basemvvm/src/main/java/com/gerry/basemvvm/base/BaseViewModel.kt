@@ -1,5 +1,6 @@
 package com.gerry.basemvvm.base
 
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
      * 所有的网络请求都是在viewModelScope域中启动，
      * 当页面销毁时会自动调用viewModel的 onCleared方法取消所有协程
      */
-    fun launchUI(block: suspend CoroutineScope.() -> Unit) =
+    private fun launchUI(block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch {
             block()
         }

@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerry.basemvvm.base.BaseFragment
 import com.gerry.wanandroidmvvm.first.adapter.ProjectAdapter
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.R
-import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import kotlinx.android.synthetic.main.fragment_new_project.*
 

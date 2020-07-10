@@ -2,7 +2,7 @@ package com.gerry.wanandroidmvvm.first.newproject
 
 import com.gerry.basemvvm.base.BaseViewModel
 import com.gerry.basemvvm.event.SingleLiveEvent
-import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.http.WanAndroidRepository
 
 class NewProjectViewModel : BaseViewModel() {

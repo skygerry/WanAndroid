@@ -11,10 +11,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gerry.basemvvm.base.BaseFragment
 
 import com.gerry.wanandroidmvvm.first.adapter.ProjectAdapter
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.R
-import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import kotlinx.android.synthetic.main.fragment_project_content.*
 

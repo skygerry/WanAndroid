@@ -12,11 +12,10 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.gerry.basemvvm.base.BaseFragment
 import com.gerry.wanandroidmvvm.first.adapter.NewArticleAdapter
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.FirstBannerBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.FirstBannerBean
 import com.gerry.wanandroidmvvm.R
-import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.fragment_new_article.*

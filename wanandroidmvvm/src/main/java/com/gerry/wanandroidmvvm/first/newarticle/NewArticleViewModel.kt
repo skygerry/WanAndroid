@@ -1,13 +1,11 @@
 package com.gerry.wanandroidmvvm.first.newarticle
 
-import androidx.lifecycle.MutableLiveData
 import com.gerry.basemvvm.base.BaseViewModel
 import com.gerry.basemvvm.event.SingleLiveEvent
-import com.gerry.wanandroid.http.bean.ArticleList
-import com.gerry.wanandroid.http.bean.FirstBannerBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.FirstBannerBean
 import com.gerry.wanandroidmvvm.http.WanAndroidRepository
 import kotlinx.coroutines.async
-import okhttp3.internal.wait
 
 class NewArticleViewModel : BaseViewModel() {
     private val firstBanner = SingleLiveEvent<List<FirstBannerBean>>()

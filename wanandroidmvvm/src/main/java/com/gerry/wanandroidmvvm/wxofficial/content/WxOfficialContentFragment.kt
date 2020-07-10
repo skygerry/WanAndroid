@@ -11,11 +11,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gerry.basemvvm.base.BaseFragment
 
 import com.gerry.wanandroidmvvm.category.adapter.SystemArticleAdapter
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import com.gerry.wanandroidmvvm.R
-import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import kotlinx.android.synthetic.main.fragment_wx_official_content.*
 
 private const val ARG_PARAM = "id"

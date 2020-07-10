@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gerry.basemvvm.base.BaseActivity
 import com.gerry.wanandroidmvvm.category.adapter.SystemArticleAdapter
-import com.gerry.wanandroid.http.bean.ArticleBean
-import com.gerry.wanandroid.http.bean.ArticleList
+import com.gerry.wanandroidmvvm.http.bean.ArticleBean
+import com.gerry.wanandroidmvvm.http.bean.ArticleList
 import com.gerry.wanandroidmvvm.R
 import com.gerry.wanandroidmvvm.web.CommentWebActivity
 import kotlinx.android.synthetic.main.activity_system_article.*
@@ -71,7 +69,7 @@ class SystemArticleActivity : BaseActivity<SystemArticleViewModel>() {
         }
     }
 
-    fun getArticleListSuccess(data: ArticleList) {
+    private fun getArticleListSuccess(data: ArticleList) {
         if (data != null) {
             if (currentPage == 0) {
                 articleList.clear()

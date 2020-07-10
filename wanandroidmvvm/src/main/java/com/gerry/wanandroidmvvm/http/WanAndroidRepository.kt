@@ -1,10 +1,6 @@
 package com.gerry.wanandroidmvvm.http
 
-import com.gerry.wanandroid.http.bean.*
-import com.gerry.wanandroidmvvm.http.bean.ResultData
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.gerry.wanandroidmvvm.http.bean.*
 
 object WanAndroidRepository {
     //----------------------首页-------------------

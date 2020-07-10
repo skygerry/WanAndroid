@@ -11,10 +11,9 @@ import com.gerry.basemvvm.base.BaseFragment
 
 import com.gerry.wanandroidmvvm.category.adapter.SystemChildrenAdapter
 import com.gerry.wanandroidmvvm.category.adapter.SystemParentAdapter
-import com.gerry.wanandroid.http.bean.Children
-import com.gerry.wanandroid.http.bean.TreeBean
+import com.gerry.wanandroidmvvm.http.bean.Children
+import com.gerry.wanandroidmvvm.http.bean.TreeBean
 import com.gerry.wanandroidmvvm.R
-import com.gerry.wanandroidmvvm.category.netnav.NetNavViewModel
 import com.gerry.wanandroidmvvm.category.systemarticle.SystemArticleActivity
 import kotlinx.android.synthetic.main.fragment_tree.*
 
