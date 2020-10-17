@@ -60,9 +60,6 @@ class NewArticleFragment : BaseFragment<NewArticleViewModel>() {
             canLoadMore = true
             viewModel.getFirstArticleTopAndList(currentPage)
         }
-
-
-        viewModel.getFirstArticleTopAndList(currentPage)
     }
 
     override fun lazyLoadData() {
